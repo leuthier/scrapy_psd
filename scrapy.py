@@ -41,3 +41,10 @@ print lista
 
 ## começo de estação: //************* contar oito linhas
 ## dar \n
+## parâmetros para o postman(no body):
+## aleaValue: endereço da imagem
+## aelaNum: valor numérico da imagem
+## dtaini: data da requisição
+## dtafim: data final da requisição
+## endereço do link: http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php
+## obs: dtaini e dtafim podem não ser necessários  
