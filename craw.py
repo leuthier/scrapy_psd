@@ -1,5 +1,7 @@
 import urllib.request
 import requests
+import scrapy
+from lxml import html
 
 lista_link = []
 
@@ -32,13 +34,24 @@ def burlarcaptcha():
         x += 1
         print(i)
         querystring = {i: "="}
-        payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"aleaNum\"\r\n\r\n0917\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"geraImg.php?imgNum=MDkxNw==\"\r\n\r\n\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
-        headers = {'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-               'cache-control': "no-cache", 'postman-token': "eb6b86b9-da6a-30c5-99ad-8a9b58fc6a5c"}
+        url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php"
+        payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"aleaNum\"\r\n\r\n4737\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"aleaValue\"\r\n\r\nNDczNw==\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"dtaini\"\r\n\r\n10/01/2018\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"dtafim\"\r\n\r\n10/01/2018\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+        headers = {
+            'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+            'cache-control': "no-cache",
+            'postman-token': "0dd0e537-bbe6-e602-b7b4-a8be39d6014e"
+            }
         response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
-        print(response.text)
-
-
-
+        dados = response.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
+        print(dados)
+##        eita = html.fromstring(response.content)
+##        pegardados(eita)
+##
+##
+        
+def pegardados(url):
+    dados = url.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
+    print ("dados",dados)
+    
 burlarcaptcha()
 
