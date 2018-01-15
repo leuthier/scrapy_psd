@@ -28,8 +28,8 @@ while True:
         break
     
 
-print z
-print lista
+print (z)
+print (lista)
 
 #source_code = source_code.split("\n")  
 #print source_code[63]
