@@ -21,10 +21,10 @@ except:
 class ExampleSpider(scrapy.Spider):
     name = 'inmet'
     allowed_domains = ['inmet.gov.br']
-    start_urls = ['http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?']
+    start_urls = ['http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTEwOA==']
     lista_link = []
     
-    def pegarcodigos(self, response):
+    def pegarcodigos(self):
         self.logger.debug(" ----------- PEGAR CODIGO")
         i = 0
         content = urllib.request.urlopen("http://www.inmet.gov.br/sonabra/maps/pg_mapa.php").read()
@@ -51,7 +51,7 @@ class ExampleSpider(scrapy.Spider):
             url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"+i
             formdata = {'aleaNum': '4737', 'aleaValue': 'NDczNw==', 'dtaini': '14/01/2018', 'dtafim':'14/01/2018'}
             os.system('scrapy view '+url+i)
-            yield FormRequest.from_response(response,formdata = formdata,clickdata = {'name': 'commit'},callback = self.after_captcha)
+            yield FormRequest.from_response(formdata = formdata,clickdata = {'name': 'commit'},callback = self.after_captcha)
 
     def after_captcha(self):
         self.logger.debug(" ----------- AFTER CAPTCHA")

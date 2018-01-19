@@ -1,6 +1,10 @@
-import urllib.request
+# -*- coding: utf-8 -*-
+
+import requests
+import urllib
 import requests
 import scrapy
+import os
 from lxml import html
 
 lista_link = []
@@ -27,31 +31,45 @@ def spider():
 
 def burlarcaptcha():
     spider()
-    url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php"
+    
+    url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"
+
     x = 1
     for i in lista_link:
-        print(x)
+        print(" -----",x)
         x += 1
-        print(i)
-        querystring = {i: "="}
-        url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php"
-        payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"aleaNum\"\r\n\r\n4737\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"aleaValue\"\r\n\r\nNDczNw==\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"dtaini\"\r\n\r\n10/01/2018\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"dtafim\"\r\n\r\n10/01/2018\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
-        headers = {
-            'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-            'cache-control': "no-cache",
-            'postman-token': "0dd0e537-bbe6-e602-b7b4-a8be39d6014e"
-            }
-        response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
-        dados = response.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
-        print(dados)
+        print(" ----- CODIGO:",i)
+        url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"+i+"=="
+            
+        form = {
+                'dtaini':'17/01/2018',
+                'dtafim':'17/01/2018',
+                'aleaValue':'NDgyOA==',
+                'aleaNum':'4828'
+                }
+            
+        encondedForm = urllib.parse.urlencode(form)
+
+        head = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+        r = requests.post(url,data=encondedForm,headers=head)
+        
+##        pegardados(r)
+            
+            
+##        dados = response.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
+##        print(dados)
 ##        eita = html.fromstring(response.content)
 ##        pegardados(eita)
-##
-##
+
+
         
-def pegardados(url):
-    dados = url.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
-    print ("dados",dados)
+def pegardados(response):
+    print (" ----- RESPONSE CONTENT\n", response.text)
+##    dados = url.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
+##    print ("dados",dados)
     
 burlarcaptcha()
 
