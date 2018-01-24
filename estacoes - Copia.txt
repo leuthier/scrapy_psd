@@ -1,0 +1,18 @@
+//************* ESTACÃO C891 ***************** 
+var point = new google.maps.LatLng(-84.0000, -79.4942);
+var html = '<div style="width:240px"><font size="1" face="Arial" color="black"><b><b>Estação:</b> Projeto Criosfera-C891<br><b>Código OMM:</b> 89079<br><b>Registro</b>: 02 UTC <br>Temp. Max.: -17 ºC<br>Temp. Min.: -17.5 ºC<br>Umidade: 70%<br>Pressão: 838.6 hPa<br>Precipitação: ///// mm<br>Vento Dir: 204 º<br>Vento Vel: 6.5 m/s<br><a href=http://www.inmet.gov.br/sonabra/maps/fotos/C891.jpg target=_new> <img src=http://www.inmet.gov.br/sonabra/maps/fotos/C891.jpg width=110 height=64 alt=Foto border=0><br></a><table width=111 border=0><tr><td width=50><a href=http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?Qzg5MQ== target=_new><img src=http://www.inmet.gov.br/sonabra/maps/dados.png alt=Dados width=30 height=25 border=0 /></a><br>Dados</td><td width=45><a href=http://www.inmet.gov.br/sonabra/pg_iframe.php?codEst=C891&mesAno=2018 target=_new><img src=http://www.inmet.gov.br/sonabra/maps/grafico.png alt=Grafico width=30 height=25 border=0 /></a><br>Gráfico</td></tr></table>Aberta em: 01/01/2014<br>Latitude: -84.0000º<br>Longitude: -79.4942º<br>Altitude: 1,285 metros</font><\/div>';
+var label = 'AA - Projeto Criosfera'; 
+var imagem = 'mm_20_amarelo_a.png';
+var marker = createMarker(point,label,html,imagem); 
+//************* ESTACÃO A108 ***************** 
+var point = new google.maps.LatLng(-7.610773, -72.681333);
+var html = '<div style="width:240px"><font size="1" face="Arial" color="black"><b><b>Estação:</b> Cruzeiro do Sul-A108<br><b>Código OMM:</b> 81881<br><b>Registro</b>: 02 UTC <br>Temp. Max.: 24.2 ºC<br>Temp. Min.: 23.3 ºC<br>Umidade: 91%<br>Pressão: 986.0 hPa<br>Precipitação: 0.0 mm<br>Vento Dir: 236 º<br>Vento Vel: 0.5 m/s<br><table width=111 border=0><tr><td width=50><a href=http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTEwOA== target=_new><img src=http://www.inmet.gov.br/sonabra/maps/dados.png alt=Dados width=30 height=25 border=0 /></a><br>Dados</td><td width=45><a href=http://www.inmet.gov.br/sonabra/pg_iframe.php?codEst=A108&mesAno=2018 target=_new><img src=http://www.inmet.gov.br/sonabra/maps/grafico.png alt=Grafico width=30 height=25 border=0 /></a><br>Gráfico</td></tr></table>Aberta em: 14/05/2015<br>Latitude: -7.610773º<br>Longitude: -72.681333º<br>Altitude: 220 metros</font><\/div>';
+var label = 'AC - Cruzeiro do Sul'; 
+var imagem = 'mm_20_amarelo_a.png';
+var marker = createMarker(point,label,html,imagem); 
+//************* ESTACÃO A140 ***************** 
+var point = new google.maps.LatLng(-11.023752, -68.735180);
+var html = '<div style="width:240px"><font size="1" face="Arial" color="black"><b><b>Estação:</b> Epitaciolândia-A140<br><b>Código OMM:</b> 86620<br><b>Registro</b>: 02 UTC <br>Temp. Max.: 23.7 ºC<br>Temp. Min.: 23.3 ºC<br>Umidade: 95%<br>Pressão: 984.7 hPa<br>Precipitação: 0.0 mm<br>Vento Dir: 90 º<br>Vento Vel: 0.6 m/s<br><table width=111 border=0><tr><td width=50><a href=http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTE0MA== target=_new><img src=http://www.inmet.gov.br/sonabra/maps/dados.png alt=Dados width=30 height=25 border=0 /></a><br>Dados</td><td width=45><a href=http://www.inmet.gov.br/sonabra/pg_iframe.php?codEst=A140&mesAno=2018 target=_new><img src=http://www.inmet.gov.br/sonabra/maps/grafico.png alt=Grafico width=30 height=25 border=0 /></a><br>Gráfico</td></tr></table>Aberta em: 25/09/2009<br>Latitude: -11.023752º<br>Longitude: -68.735180º<br>Altitude: 225 metros</font><\/div>';
+var label = 'AC - Epitaciolândia'; 
+var imagem = 'mm_20_amarelo_a.png';
+var marker = createMarker(point,label,html,imagem);
