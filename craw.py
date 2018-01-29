@@ -58,20 +58,6 @@ def burlarcaptcha():
         r = requests.post(url,data=encondedForm,headers=head)
     print(r.text)
         
-##        pegardados(r)
-            
-            
-##        dados = response.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
-##        print(dados)
-##        eita = html.fromstring(response.content)
-##        pegardados(eita)
 
-
-        
-##def pegardados(response):
-##    print (" ----- RESPONSE CONTENT\n", response.text)
-##    dados = url.xpath('normalize-space(//*[@id="FRM"]/table[3]/tbody/tr[2]/td/table[1]/tbody/tr/td/table/tbody/tr[2]/td[1])')
-##    print ("dados",dados)
-    
 burlarcaptcha()
 

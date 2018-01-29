@@ -2,3 +2,13 @@ inmet/inmet/spiders/__pycache__/inmet.cpython-36.pyc
 inmet/inmet/spiders/__pycache__/__init__.cpython-36.pyc
 inmet/inmet/__pycache__/settings.cpython-36.pyc
 inmet/inmet/__pycache__/__init__.cpython-36.pyc
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/scrapy_psd\.iml
+
+\.idea/vcs\.xml
+
+\.idea/workspace\.xml
