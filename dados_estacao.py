@@ -53,5 +53,6 @@ def pegarestacoes():
     print("estacoes['A108']", estacoes['A108'])
 
     arq.close()
+    print("testando autorizacoes")
 
     return estacoes
