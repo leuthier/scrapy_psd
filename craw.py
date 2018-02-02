@@ -4,6 +4,7 @@ import dados_estacao
 import requests
 import urllib
 import requests
+from datetime import datetime
 import scrapy
 import os
 from lxml import html
@@ -32,9 +33,10 @@ def spider():
 
 def burlarcaptcha():
     lista_link = spider()
-    
-    url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"
 
+    now = datetime.now()
+    today = str(now.day)+"/"+str(now.month)+"/"+str(now.year)
+    print (today)
     x = 1
     master_dic = {}
     for i in lista_link: #TODO: this can be a paramether
@@ -45,8 +47,8 @@ def burlarcaptcha():
         url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"+i+"=="
 
         form = {
-                'dtaini':'17/01/2018', #TODO: get todays date using datetime
-                'dtafim':'17/01/2018',
+                'dtaini':today,
+                'dtafim':today,
                 'aleaValue':'NDgyOA==',
                 'aleaNum':'4828'
                 }
