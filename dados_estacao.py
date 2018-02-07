@@ -49,10 +49,10 @@ def pegarestacoes():
             estacoes[nome_estacao] = {'codigo':codigo,'lat':lat,'lng':lng,'cidade':cidade,'estado':estado,
                                       'altitude':altitude}
 
-    print("estacoes['C891']",estacoes['C891'])
-    print("estacoes['A108']", estacoes['A108'])
+#    print("estacoes['C891']",estacoes['C891'])
+#    print("estacoes['A108']", estacoes['A108'])
 
     arq.close()
-    print("testando autorizacoes")
+#S    print("testando autorizacoes")
 
     return estacoes

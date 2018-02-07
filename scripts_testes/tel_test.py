@@ -1,7 +1,6 @@
 import requests
 import time
 
-
 def publish(temperatura, ligado, velocidade):
     headers = {
         'Content-Type': 'application/json',
@@ -12,7 +11,7 @@ def publish(temperatura, ligado, velocidade):
     data = '{ \n   "temperatura": "' + str(temperatura) + '", \n   "ligado": ' + str(
         ligado) + ', \n   "velocidade": "' + str(velocidade) + '" \n }'
 
-    response = requests.post('http://localhost:8080/api/v1/cHzsIZicvtcFJf6qSP4e/telemetry', headers=headers, data=data)
+    response = requests.post('http://localhost:8080/api/v1/xhYxUqcyRiEitxGBAofl/telemetry', headers=headers, data=data)
     print(response.content)
 
 
@@ -41,19 +40,18 @@ def get_telemetry():
     print(response.content)
     return response.content
 
+
 # teste do publish
-# i = 0
-# t = 300
-# v = 400
-# for i in range(100):
-
-#    if i % 2 == 0:
-#        li = "true"
-#    else:
-#        li = "false"
-
-#    publish(t, li, v)
-#    time.sleep(4)
-#    t += 5
-#    v -= 1
-#    i += 1
+i = 0
+t = 300
+v = 400
+for i in range(100):
+    if i % 2 == 0:
+        li = "true"
+    else:
+        li = 'false'
+    publish(t, li, v)
+    time.sleep(2)
+    t += 5
+    v -= 1
+    i += 1

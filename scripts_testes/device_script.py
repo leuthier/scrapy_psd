@@ -14,7 +14,6 @@ def get_token_sys():
     t = str(response.content)
     t = t.split('"')
     token = str(t[3])
-
     return token
 
 
@@ -26,7 +25,7 @@ def create_device(name):
         'X-Authorization': token,
     }
 
-    data = '{ \n   "additionalInfo": null, \n   "createdTime": 0, \n   "name": "' + name + '",\n   "type": "default" \n }'
+    data = '{ \n   "additionalInfo": null, \n   "createdTime": 0, \n   "name": "' + str(name) + '",\n   "type": "default" \n }'
 
     response = requests.post('http://localhost:8080/api/device', headers=headers, data=data)
 
@@ -34,22 +33,23 @@ def create_device(name):
     t = t.split('"')
     device_id = t[9]
     device_name = t[-8]
-    device = {device_id, device_name}
 
     g = open("devices.txt", "a")
     g.write(device_name + "\n")
     g.write(device_id + "\n")
     g.close()
+    print(device_id)
+    print(data)
+    print(response.content)
+    return str(device_id)
 
-    return device
 
-
-file = open("devices.txt", "r")
-ls = file.readlines()
-local = ls[1]
-local = local.split(" ")
-local = local[2].split("\n")
-device_id = str(local[0])
+# file = open("devices.txt", "r")
+# ls = file.readlines()
+# local = ls[1]
+# local = local.split(" ")
+# local = local[2].split("\n")
+# device_id = str(local[0])
 
 
 def get_credentials(device):
@@ -59,7 +59,7 @@ def get_credentials(device):
         'X-Authorization': token,
     }
 
-    response = requests.get('http://localhost:8080/api/device/'+device+'/credentials', headers=headers)
+    response = requests.get('http://localhost:8080/api/device/'+str(device)+'/credentials', headers=headers)
     t = str(response.content)
     t = t.split('"')
     print(t)
@@ -67,8 +67,9 @@ def get_credentials(device):
     g = open("credentials.txt", "a")
     g.write(credential + "\n")
     g.close
-
     return credential
+
+
 
 # arquivo antigo para pegar o id do arquivo, com os nomes dos devices e seus ids, método reformulado
 
@@ -81,9 +82,8 @@ def get_credentials(device):
 
 # exemplo para criar devices
 
-# i = 1
-# for i in range(555):
-#    nome = "device " + str(i)
-#    create_device(nome)
-#    i += 1
-#    print("Device created, number: {}".format(i))
+
+nome = "estacao-c891"
+# create_device(nome)
+cred = get_credentials("fdd118c0-0c0c-11e8-b6e2-b57d32216e51")
+print(cred)
