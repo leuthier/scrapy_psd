@@ -1,17 +1,15 @@
 import requests
 import time
 
-def publish(temperatura, ligado, velocidade):
+def publish(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude):
     headers = {
         'Content-Type': 'application/json',
         'Accept': '*/*',
         'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZW5hbnRAdGhpbmdzYm9hcmQub3JnIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI4YTcxMTBmMC0wNjMxLTExZTgtOGEwNS03MWMwMDY3YTg4MjgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiOGE2ZmZmODAtMDYzMS0xMWU4LThhMDUtNzFjMDA2N2E4ODI4IiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTE3OTMzNDY1LCJleHAiOjE1MjY5MzM0NjV9.K-weRFt0sDr-xVbhG0Ll7LV9LDpP8w-oWoXnjjRtXEXmvibL-zUcS1g54QEjuf8AjpmGcj1ncHkOQQDkHANMLw',
     }
+    data = '{ \n   "hora": "' + str(hora) + '", \n   "temp_max": ' + str(temp_max) + '", \n   "temp_min": "' + str(temp_min) + '", \n   "temp_inst": "' + str(temp_inst) + '", \n   "pressao": ' + str(pressao) + '", \n   "radiacao": "' + str(radiacao) + '", \n    "vento_vel": "' + str(vento_vel) + '", \n   "vento_rajada": ' + str(vento_rajada) + '", \n   "data": "' + str(data) + '", \n   "latitude": "' + str(latitude) + '", \n }'
 
-    data = '{ \n   "temperatura": "' + str(temperatura) + '", \n   "ligado": ' + str(
-        ligado) + ', \n   "velocidade": "' + str(velocidade) + '" \n }'
-
-    response = requests.post('http://localhost:8080/api/v1/xhYxUqcyRiEitxGBAofl/telemetry', headers=headers, data=data)
+    response = requests.post('http://localhost:8080/api/v1/xhYxUqcyRiEitxGBAofl/atributes', headers=headers, data=data)
     print(response.content)
 
 
@@ -45,13 +43,13 @@ def get_telemetry():
 i = 0
 t = 300
 v = 400
-for i in range(100):
-    if i % 2 == 0:
-        li = "true"
-    else:
-        li = 'false'
-    publish(t, li, v)
-    time.sleep(2)
-    t += 5
-    v -= 1
-    i += 1
+# for i in range(100):
+#    if i % 2 == 0:
+#        li = "true"
+#    else:
+#        li = 'false'
+publish(00, -22.7, -23.2, -23.1, 841, 1000, 7, 8, '07/02/2018', -84.0000)
+#    time.sleep(2)
+#    t += 5
+#    v -= 1
+#    i += 1
