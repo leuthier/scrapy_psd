@@ -2,7 +2,7 @@ import math
  
 import refet
  
-
+# não testado corretamente
  
 # conversoes 
 tmin_c = (66.65 - 32) * (5.0 / 9)                          # F -> C

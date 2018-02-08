@@ -1,4 +1,5 @@
 import requests
+from dados_estacao import pegarestacoes
 
 
 def get_token_sys():
@@ -25,7 +26,8 @@ def create_device(name):
         'X-Authorization': token,
     }
 
-    data = '{ \n   "additionalInfo": null, \n   "createdTime": 0, \n   "name": "' + str(name) + '",\n   "type": "default" \n }'
+    data = '{ \n   "additionalInfo": null, \n   "createdTime": 0, \n   "name": "' + str(
+        name) + '",\n   "type": "default" \n }'
 
     response = requests.post('http://localhost:8080/api/device', headers=headers, data=data)
 
@@ -59,7 +61,7 @@ def get_credentials(device):
         'X-Authorization': token,
     }
 
-    response = requests.get('http://localhost:8080/api/device/'+str(device)+'/credentials', headers=headers)
+    response = requests.get('http://localhost:8080/api/device/' + str(device) + '/credentials', headers=headers)
     t = str(response.content)
     t = t.split('"')
     print(t)
@@ -68,7 +70,6 @@ def get_credentials(device):
     g.write(credential + "\n")
     g.close
     return credential
-
 
 
 # arquivo antigo para pegar o id do arquivo, com os nomes dos devices e seus ids, método reformulado
@@ -80,10 +81,13 @@ def get_credentials(device):
 # local = local[2].split("\n")
 # device_id = str(local[0])
 
-# exemplo para criar devices
-
-
-nome = "estacao-c891"
 # create_device(nome)
-cred = get_credentials("fdd118c0-0c0c-11e8-b6e2-b57d32216e51")
+
+
+dic = pegarestacoes()
+print(dic.keys())
+first = list(dic.keys())
+first = first[0]
+dev = create_device(first)
+cred = get_credentials(dev)
 print(cred)

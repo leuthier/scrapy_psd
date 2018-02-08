@@ -2,25 +2,25 @@
 
 def pegarestacoes():
     estacoes = {}
-    
-    lat, lng, altitude = 0, 0, 0
-    codigo, estado, cidade, nome_estacao = "","","",""
 
-    arq = open("estacoes_utf-8.txt","r")
+    lat, lng, altitude = 0, 0, 0
+    codigo, estado, cidade, nome_estacao = "", "", "", ""
+
+    arq = open("estacoes_utf-8.txt", "r")
 
     for linha in arq:
-        linha = linha.replace('\n','')
+        linha = linha.replace('\n', '')
 
         if ("//************* ESTACÃO " in linha):
             comeco_estacao = linha.find("O")
-            fim_estacao = linha.find(" *")        
-            nome_estacao = linha[comeco_estacao+2:fim_estacao]
+            fim_estacao = linha.find(" *")
+            nome_estacao = linha[comeco_estacao + 2:fim_estacao]
 
         if ("var point" in linha):
             lat_lng = linha.strip(",")
             comeco_lat_lng = lat_lng.find("(")
             fim_lat_lng = lat_lng.find(")")
-            lat_lng = lat_lng[comeco_lat_lng+1:fim_lat_lng]
+            lat_lng = lat_lng[comeco_lat_lng + 1:fim_lat_lng]
             lat_lng = lat_lng.split(",")
             lat = lat_lng[0]
             lng = lat_lng[1]
@@ -28,14 +28,12 @@ def pegarestacoes():
         if ("http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?" in linha):
             comeco_codigo = linha.find("http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?")
             fim_codigo = linha.find("==")
-            codigo = linha[comeco_codigo+len("http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"):fim_codigo]
-
-
+            codigo = linha[comeco_codigo + len("http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"):fim_codigo]
 
         if ("Altitude: " in linha):
             comeco_altitude = linha.find("Altitude: ")
             fim_altitude = linha.find("metros")
-            altitude = linha[comeco_altitude+10:fim_altitude]
+            altitude = linha[comeco_altitude + 10:fim_altitude]
 
         if ("var label = '" in linha):
             comeco_endereco = linha.find("'")
@@ -46,13 +44,9 @@ def pegarestacoes():
             estado = endereco[0]
             cidade = endereco[1]
 
-            estacoes[nome_estacao] = {'codigo':codigo,'lat':lat,'lng':lng,'cidade':cidade,'estado':estado,
-                                      'altitude':altitude}
-
-#    print("estacoes['C891']",estacoes['C891'])
-#    print("estacoes['A108']", estacoes['A108'])
+            estacoes[nome_estacao] = {'codigo': codigo, 'lat': lat, 'lng': lng, 'cidade': cidade, 'estado': estado,
+                                      'altitude': altitude}
 
     arq.close()
-#S    print("testando autorizacoes")
 
     return estacoes

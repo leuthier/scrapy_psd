@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from dados_estacao import pegarestacoes
-import requests
 import urllib
 import requests
 from datetime import datetime
-import scrapy
-import os
-from lxml import html
 
-lista_link = []
+list_link = []
+
 
 def spider():
 
@@ -26,12 +23,12 @@ def spider():
         else:
             posicao = int(i + len(find))
             teste = content[posicao: posicao + 6]
-            lista_link.append(teste)
+            list_link.append(teste)
             i += len(find)
-    return lista_link
+    return list_link
 
 
-def burlarcaptcha():
+def try_captcha():
     lista_link = spider()
 
     now = datetime.now()
@@ -87,7 +84,8 @@ def burlarcaptcha():
             for data_index in range(len(data_set.split(","))):
                 data_time[categories[data_index]] = data_set.split(",")[data_index]
             day_time_list.append(data_time)
-        #print(day_time_list)
+
+        # valores horarios de uma medicao coletada
         hora = day_time_list[0]['hora']
         temp_min = day_time_list[0]['temp_min']
         temp_max = day_time_list[0]['temp_max']
@@ -100,15 +98,16 @@ def burlarcaptcha():
         latitude = pegarestacoes()['C891']['lat']
         print(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude)
         master_dic[i] = day_time_list
+
+        # dicionario principal com todos os dados coletados de todas as estacoes com valores do dia
         # print(master_dic)
     else:
         print("nenhuma informação disponivel ou parametros de pesquisa invalidos")
-    # print(master_dic)
 
 
 
 
         
 
-burlarcaptcha()
+try_captcha()
 
