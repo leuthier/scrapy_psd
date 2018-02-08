@@ -7,7 +7,7 @@ navegue até o diretório do projeto:
     
     pip install -r requirements
 
-pagar coletar os dados das estações:
+coletar os dados das estações:
  
     
     python dados_estacao.py
