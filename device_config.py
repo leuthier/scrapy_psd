@@ -15,6 +15,7 @@ def get_token_sys():
     t = str(response.content)
     t = t.split('"')
     token = str(t[3])
+    print(token)
     return token
 
 
@@ -72,22 +73,12 @@ def get_credentials(device):
     return credential
 
 
-# arquivo antigo para pegar o id do arquivo, com os nomes dos devices e seus ids, método reformulado
+# dic = pegarestacoes()
+# print(dic.keys())
+# first = list(dic.keys())
+# first = first[0]
+# dev = create_device(first)
+# cred = get_credentials(dev)
+# print(cred)
 
-# file = open("devices.txt", "r")
-# ls = file.readlines()
-# local = ls[1]
-# local = local.split(" ")
-# local = local[2].split("\n")
-# device_id = str(local[0])
-
-# create_device(nome)
-
-
-dic = pegarestacoes()
-print(dic.keys())
-first = list(dic.keys())
-first = first[0]
-dev = create_device(first)
-cred = get_credentials(dev)
-print(cred)
+get_token_sys()

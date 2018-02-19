@@ -9,12 +9,11 @@ list_link = []
 
 
 def spider():
-
     i = 0
 
     content = urllib.request.urlopen("http://www.inmet.gov.br/sonabra/maps/pg_mapa.php").read()
     content = str(content)
-    
+
     while i < len(content):
         find = 'http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?'
         i = content.find(find, i)
@@ -32,29 +31,29 @@ def try_captcha():
     lista_link = spider()
 
     now = datetime.now()
-    today = str(now.day)+"/"+str(now.month)+"/"+str(now.year)
-    print (today)
+    today = str(now.day) + "/" + str(now.month) + "/" + str(now.year)
+    print(today)
     x = 1
     master_dic = {}
     # for i in lista_link:
     i = lista_link[0]
     print(" -----", x)
     x += 1
-    print(" ----- CODIGO:",i)
-    url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?"+i+"=="
+    print(" ----- CODIGO:", i)
+    url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?" + i + "=="
 
     form = {
-            'dtaini':today,
-            'dtafim':today,
-            'aleaValue':'NDgyOA==',
-            'aleaNum':'4828'
-            }
+        'dtaini': today,
+        'dtafim': today,
+        'aleaValue': 'NDgyOA==',
+        'aleaNum': '4828'
+    }
 
     encondedForm = urllib.parse.urlencode(form)
 
     head = {
-            'Content-Type': 'application/x-www-form-urlencoded'
-            }
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
 
     r = requests.post(url, data=encondedForm, headers=head)
     cook = r.cookies.items()
@@ -105,9 +104,4 @@ def try_captcha():
         print("nenhuma informação disponivel ou parametros de pesquisa invalidos")
 
 
-
-
-        
-
 try_captcha()
-
