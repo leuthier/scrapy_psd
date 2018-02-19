@@ -1,4 +1,5 @@
 import requests
+import time
 from dados_estacao import pegarestacoes
 
 
@@ -15,7 +16,6 @@ def get_token_sys():
     t = str(response.content)
     t = t.split('"')
     token = str(t[3])
-    print(token)
     return token
 
 
@@ -42,17 +42,7 @@ def create_device(name):
     g.write(device_id + "\n")
     g.close()
     print(device_id)
-    print(data)
-    print(response.content)
     return str(device_id)
-
-
-# file = open("devices.txt", "r")
-# ls = file.readlines()
-# local = ls[1]
-# local = local.split(" ")
-# local = local[2].split("\n")
-# device_id = str(local[0])
 
 
 def get_credentials(device):
@@ -65,7 +55,6 @@ def get_credentials(device):
     response = requests.get('http://localhost:8080/api/device/' + str(device) + '/credentials', headers=headers)
     t = str(response.content)
     t = t.split('"')
-    print(t)
     credential = str(t[-4])
     g = open("credentials.txt", "a")
     g.write(credential + "\n")
@@ -73,12 +62,21 @@ def get_credentials(device):
     return credential
 
 
-# dic = pegarestacoes()
-# print(dic.keys())
-# first = list(dic.keys())
-# first = first[0]
-# dev = create_device(first)
-# cred = get_credentials(dev)
-# print(cred)
+def create_base_devices():
+    dic = pegarestacoes()
+    dic_list = list(dic.keys())
+    time.sleep(2)
+    for i in range(4):
+        item = dic_list[i]
+        print("Create device with id: {}".format(i))
+        device = create_device(item)
+        time.sleep(0.5)
+        print("Device created.")
+        time.sleep(0.5)
+        print("Geting credencials.")
+        cred = get_credentials(device)
+        print("Credencials of the device: {}".format(cred))
+        time.sleep(2)
 
-get_token_sys()
+
+create_base_devices()

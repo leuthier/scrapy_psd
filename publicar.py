@@ -1,4 +1,4 @@
-from .device_config import *
+from device_config import *
 
 
 def publish(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude):
