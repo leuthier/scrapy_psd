@@ -38,8 +38,8 @@ def create_device(name):
     device_name = t[-8]
 
     g = open("devices.txt", "a")
-    g.write(device_name + "\n")
-    g.write(device_id + "\n")
+    g.write(device_name + ",")
+    g.write(device_id + ",")
     g.close()
     print(device_id)
     return str(device_id)
@@ -57,7 +57,7 @@ def get_credentials(device):
     t = t.split('"')
     credential = str(t[-4])
     g = open("credentials.txt", "a")
-    g.write(credential + "\n")
+    g.write(credential + ",")
     g.close
     return credential
 
@@ -65,8 +65,9 @@ def get_credentials(device):
 def create_base_devices():
     dic = pegarestacoes()
     dic_list = list(dic.keys())
+    credentials = []
     time.sleep(2)
-    for i in range(4):
+    for i in range(5):
         item = dic_list[i]
         print("Create device with id: {}".format(i))
         device = create_device(item)
@@ -75,8 +76,8 @@ def create_base_devices():
         time.sleep(0.5)
         print("Geting credencials.")
         cred = get_credentials(device)
+        credentials.append(cred)
         print("Credencials of the device: {}".format(cred))
         time.sleep(2)
 
-
-create_base_devices()
+    return credentials

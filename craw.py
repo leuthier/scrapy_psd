@@ -32,14 +32,14 @@ def try_captcha():
 
     now = datetime.now()
     today = str(now.day) + "/" + str(now.month) + "/" + str(now.year)
-    print(today)
+    # print(today)
     x = 1
     master_dic = {}
     # for i in lista_link:
     i = lista_link[0]
-    print(" -----", x)
+    # print(" -----", x)
     x += 1
-    print(" ----- CODIGO:", i)
+    # print(" ----- CODIGO:", i)
     url = "http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?" + i + "=="
 
     form = {
@@ -94,14 +94,15 @@ def try_captcha():
         vento_vel = day_time_list[0]['vento_direcao']
         vento_rajada = day_time_list[0]['vento_rajada']
         data = day_time_list[0]['data']
-        latitude = pegarestacoes()['C891']['lat']
-        print(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude)
+        # print(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude)
         master_dic[i] = day_time_list
 
         # dicionario principal com todos os dados coletados de todas as estacoes com valores do dia
         # print(master_dic)
     else:
         print("nenhuma informação disponivel ou parametros de pesquisa invalidos")
+
+    return day_time_list
 
 
 try_captcha()
