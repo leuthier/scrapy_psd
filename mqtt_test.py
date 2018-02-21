@@ -79,7 +79,8 @@ def publish_mqtt():
 
 # publish_mqtt()
 day_list = try_captcha()
-hour = 0
-for i in range(24):
-    print(day_list[int(hour)]['hora'])
-    hour += 1
+print(day_list)
+# hour = 0
+# for i in range(24):
+#     print(day_list[int(hour)]['hora'])
+#     hour += 1
