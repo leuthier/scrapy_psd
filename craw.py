@@ -6,6 +6,7 @@ import requests
 from datetime import datetime
 
 list_link = []
+list_test = []
 
 # estacao de Rio Branco - AC :   QTEwMg==
 # estacao de Recife - PE:        QTMwMQ==
@@ -28,11 +29,9 @@ def spider():
             teste = content[posicao: posicao + 6]
             list_link.append(teste)
             i += len(find)
-    list_test = []
-    for i in list_link:
-        if i == "QTEwMg" or i == "QTMwMQ" or i == "QTgwNg" or i == "QTcwMQ" or i == "QTAwMg":
-            list_test.append(i)
-    print(list_test)
+    for h in list_link:
+        if h == "QTEwMg" or h == "QTMwMQ" or h == "QTgwNg" or h == "QTcwMQ" or h == "QTAwMg":
+            list_test.append(h)
     return list_test
 
 
@@ -76,7 +75,6 @@ def try_captcha():
 
         n = requests.get("http://www.inmet.gov.br/sonabra/pg_downDadosCodigo_sim.php", headers=head2)
         day_time_list = []
-        data_time = {}
         response = n.text
         response = response.replace('////', "-")
         response = response.replace("\r\n\t\t", "")
@@ -94,25 +92,12 @@ def try_captcha():
                     data_time[categories[data_index]] = data_set.split(",")[data_index]
                 day_time_list.append(data_time)
 
-            # valores horarios de uma medicao coletada
-            hora = day_time_list[0]['hora']
-            temp_min = day_time_list[0]['temp_min']
-            temp_max = day_time_list[0]['temp_max']
-            temp_inst = day_time_list[0]['temp_inst']
-            pressao = day_time_list[0]['pressao']
-            radiacao = day_time_list[0]['radiacao']
-            vento_vel = day_time_list[0]['vento_direcao']
-            vento_rajada = day_time_list[0]['vento_rajada']
-            data = day_time_list[0]['data']
-            # print(hora, temp_max, temp_min, temp_inst, pressao, radiacao, vento_vel, vento_rajada, data, latitude)
             master_dic[i] = day_time_list
-
-            # dicionario principal com todos os dados coletados de todas as estacoes com valores do dia
 
         else:
             print("nenhuma informação disponivel ou parametros de pesquisa invalidos")
-    print(master_dic)
-    return day_time_list
+    # print(master_dic)
+    return master_dic
 
 
 try_captcha()

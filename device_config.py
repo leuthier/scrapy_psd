@@ -1,6 +1,6 @@
 import requests
 import time
-from dados_estacao import pegarestacoes
+from craw import spider
 
 
 def get_token_sys():
@@ -63,12 +63,11 @@ def get_credentials(device):
 
 
 def create_base_devices():
-    dic = pegarestacoes()
-    dic_list = list(dic.keys())
+    list_code = spider()
     credentials = []
     time.sleep(2)
     for i in range(5):
-        item = dic_list[i]
+        item = list_code[i]
         print("Create device with id: {}".format(i))
         device = create_device(item)
         time.sleep(0.5)
@@ -81,3 +80,5 @@ def create_base_devices():
         time.sleep(2)
 
     return credentials
+
+

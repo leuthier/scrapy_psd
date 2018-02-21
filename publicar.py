@@ -36,8 +36,6 @@ def get_telemetry():
         'http://localhost:8080/api/plugins/telemetry/DEVICE/5445f210-08d0-11e8-9bfd-71c0067a8828/values/timeseries',
         headers=headers, params=params)
 
-#     método antigo de request, sem passagem dos parâmetros, para teste direto no URL
-#     response = requests.get('http://localhost:8080/api/plugins/telemetry/DEVICE/ac8e6020-ae99-11e6-b9bd-2b15845ada4e/values/timeseries?keys=gas,temperature', headers=headers)
     print(response.content)
     return response.content
 
