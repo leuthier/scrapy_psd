@@ -46,6 +46,7 @@ def publish_mqtt():
     dic_master = try_captcha()
     aux = list(dic_master.keys())
     data = dict()
+    data_final = {}
     for k in aux:
         lista = dic_master[aux[inc]]
         client.username_pw_set(credentials[inc])
@@ -56,19 +57,19 @@ def publish_mqtt():
         time.sleep(2)
         for i in range(len(lista)):
             data["hora"] = lista[hour]['hora']
-            data["temp_min"] = lista[hour]['temp_min']
-            data["temp_max"] = lista[hour]['temp_max']
+            data["ponto_ovalho_inst"] = lista[hour]['pto_orvalho_inst']
             data["temp_inst"] = lista[hour]['temp_inst']
-            data["pressao"] = lista[hour]['pressao']
             data["radiacao"] = lista[hour]['radiacao']
             data["vento_vel"] = lista[hour]['vento_vel']
-            data["vento_rajada"] = lista[hour]['vento_rajada']
             data["data"] = lista[hour]['data']
             data_out = json.dumps(data)  # criação do objeto JSON
             print("publish topic", topic, "data out= ", data_out)
             ret = client.publish(topic, data_out, 0)  # publicação
             time.sleep(4)
             hour += 1
+            data_final[str(hour)] = data
+
     client.disconnect()
+    return print(data)
 
 publish_mqtt()

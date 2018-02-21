@@ -8,11 +8,11 @@ from datetime import datetime
 list_link = []
 list_test = []
 
-# estacao de Rio Branco - AC :   QTEwMg==
-# estacao de Recife - PE:        QTMwMQ==
-# estacao de Florianopolis - SC: QTgwNg==
-# estacao de São Paulo - SP:     QTcwMQ==
-# estacao de Goiânia - GO:       QTAwMg==
+# estacao de Rio Branco - AC :   QTEwMg== A102
+# estacao de Recife - PE:        QTMwMQ== A301
+# estacao de Florianopolis - SC: QTgwNg== A806
+# estacao de São Paulo - SP:     QTcwMQ== A701
+# estacao de Goiânia - GO:       QTAwMg== A002
 def spider():
     i = 0
 
@@ -34,7 +34,11 @@ def spider():
             list_test.append(h)
     return list_test
 
-
+def dados():
+    resultado = pegarestacoes()
+    indices = spider()
+    for x in indices:
+        print(resultado[x])
 def try_captcha():
     lista_link = spider()
 
@@ -91,7 +95,7 @@ def try_captcha():
                 for data_index in range(len(data_set.split(","))):
                     data_time[categories[data_index]] = data_set.split(",")[data_index]
                 day_time_list.append(data_time)
-
+                print(data_time)
             master_dic[i] = day_time_list
 
         else:
@@ -100,4 +104,5 @@ def try_captcha():
     return master_dic
 
 
-try_captcha()
+# try_captcha()
+dados()
